@@ -7,14 +7,13 @@ interface TaskList {
   taskName: string;
   completed: boolean;
 }
-
 function App() {
   const [taskLists, setTaskLists] = useState<TaskList[]>([]);
  
   const handleComplete = (index: number) => {
     setTaskLists((prevTask) =>
       prevTask.map((task, i) =>
-        i === index ? { ...task, completed: true } : task
+        i === index ? { ...task, completed: !task.completed } : task
       )
     );
   };
@@ -49,7 +48,7 @@ function App() {
             </div>
             <div>
             <Button  onClick={() => handleComplete(index)}>
-              Complete 
+               {item.completed ? "Not Completed" : "Completed"}
             </Button>
             <Button danger onClick={() => handleDelete(index)}>
               Delete
@@ -58,6 +57,7 @@ function App() {
           </List.Item>
         )}
       />
+    
     </>
   );
 }

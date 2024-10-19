@@ -32,7 +32,7 @@ const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
-      style={{ maxWidth:"600px"}}
+      style={{ maxWidth:"700px"}}
       initialValues={{ remember: true }}
       onFinish={handleSubmit}
       autoComplete="off"
