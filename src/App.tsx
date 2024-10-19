@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 // import { DatePicker } from "antd";
 import AddTask from "./components/AddTask";
-import { Divider, List, Typography } from "antd";
+import { Divider, List, Typography,Button } from "antd";
 
 interface TaskList {
   taskName: string;
@@ -11,7 +11,9 @@ interface TaskList {
 
 function App() {
   const [taskLists, setTaskLists] = useState<TaskList[]>([]);
-
+  const handleDelete =(index:number)=>{
+    setTaskLists((prevTask)=>prevTask.filter((_,i)=>i!=index))
+  }
   const onAddTask = (taskName: string) => {
     setTaskLists((prevTaskLists) => [
       ...prevTaskLists,
@@ -28,13 +30,14 @@ function App() {
         size="large"
         bordered
         dataSource={taskLists}
-        renderItem={(item) => (
+        renderItem={(item,index) => (
           <List.Item style={{display: "flex", justifyContent:"center",alignItems:"center"}}> 
             <Typography.Text>{item.taskName}</Typography.Text>
             {" - "}
             <Typography.Text type={item.completed ? "success" : "danger"}>
               {item.completed ? "Completed" : "Pending"}
             </Typography.Text>
+            <Button danger onClick={()=>handleDelete(index)}>Delete</Button>
           </List.Item>
         )}
       />
