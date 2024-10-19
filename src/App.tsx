@@ -1,8 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-// import { DatePicker } from "antd";
 import AddTask from "./components/AddTask";
-import { Divider, List, Typography,Button } from "antd";
+import { Divider, List, Typography, Button } from "antd";
 
 interface TaskList {
   taskName: string;
@@ -11,15 +10,24 @@ interface TaskList {
 
 function App() {
   const [taskLists, setTaskLists] = useState<TaskList[]>([]);
-  const handleDelete =(index:number)=>{
-    setTaskLists((prevTask)=>prevTask.filter((_,i)=>i!=index))
-  }
+ 
+  const handleComplete = (index: number) => {
+    setTaskLists((prevTask) =>
+      prevTask.map((task, i) =>
+        i === index ? { ...task, completed: true } : task
+      )
+    );
+  };
+
+  
+  const handleDelete = (index: number) => {
+    setTaskLists((prevTask) => prevTask.filter((_, i) => i != index));
+  };
   const onAddTask = (taskName: string) => {
     setTaskLists((prevTaskLists) => [
       ...prevTaskLists,
       { taskName, completed: false },
     ]);
-    console.log("Task added", taskName);
   };
   return (
     <>
@@ -30,14 +38,23 @@ function App() {
         size="large"
         bordered
         dataSource={taskLists}
-        renderItem={(item,index) => (
-          <List.Item style={{display: "flex", justifyContent:"center",alignItems:"center"}}> 
-            <Typography.Text>{item.taskName}</Typography.Text>
-            {" - "}
-            <Typography.Text type={item.completed ? "success" : "danger"}>
-              {item.completed ? "Completed" : "Pending"}
-            </Typography.Text>
-            <Button danger onClick={()=>handleDelete(index)}>Delete</Button>
+        renderItem={(item, index) => (
+          <List.Item>
+            <div>
+              <Typography.Text>{item.taskName}</Typography.Text>
+              {" - "}
+              <Typography.Text type={item.completed ? "success" : "danger"}>
+                {item.completed ? "Completed" : "Pending"}
+              </Typography.Text>
+            </div>
+            <div>
+            <Button  onClick={() => handleComplete(index)}>
+              Complete 
+            </Button>
+            <Button danger onClick={() => handleDelete(index)}>
+              Delete
+            </Button>
+            </div>
           </List.Item>
         )}
       />
