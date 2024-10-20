@@ -8,7 +8,9 @@ import {
   Container,
   Tooltip,
 } from "@chakra-ui/react";
-import { MdDelete, MdCheckCircle, MdPendingActions } from "react-icons/md";
+import { MdDelete, MdOutlineAccessTimeFilled } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
+
 interface Task {
   id: number;
   taskName: string;
@@ -45,7 +47,7 @@ const DisplayList: React.FC<DisplayListProps> = ({
                 >
                   <Button
                     leftIcon={
-                      task.completed ? <MdPendingActions /> : <MdCheckCircle />
+                      task.completed ? <MdOutlineAccessTimeFilled /> : <FaCheck />
                     }
                     onClick={() => handleComplete(task.id)}
                   >

@@ -10,7 +10,6 @@ import {
   Container,
   Tooltip,
 } from "@chakra-ui/react";
-import { MdSave } from "react-icons/md";
 const exTasks = [
   "Do my laundry",
   "Cancel milk delivery ",
@@ -21,6 +20,7 @@ const exTasks = [
   "Recharge mobile",
   "Pack swimsuit",
 ];
+import { IoAddCircle } from "react-icons/io5";
 
 interface AddTaskProps {
   onAddTask: (taskName: string) => void;
@@ -76,7 +76,7 @@ const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
           <FormHelperText>e.g {exTasks[randomIndex]}</FormHelperText>
           <Tooltip label="Add Task">
             <Button
-              rightIcon={<MdSave />}
+              rightIcon={<IoAddCircle />}
               colorScheme="blue"
               type="submit"
               marginTop={3}
