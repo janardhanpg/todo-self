@@ -23,3 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 src/Appi.tsx
+src/components/dum.tsx
