@@ -7,8 +7,11 @@ import {
   useColorMode,
   Button,
   Divider,
-  Heading,Container
+  Heading,
+  Container,
+  Tooltip,
 } from "@chakra-ui/react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 interface TaskList {
   id: number;
@@ -61,10 +64,22 @@ function App() {
   };
 
   return (
-    <Container maxW='container.sm'>
-      <Button onClick={toggleColorMode} right={1} position={'relative'}>
-        Toggle {colorMode === "light" ? "Dark" : "Light"} Mode
-      </Button>
+    <Container maxW="container.sm">
+      <Tooltip
+        label={
+          colorMode === "light"
+            ? "Switch to Dark Mode"
+            : "Switch to Light Mode "
+        }
+      >
+        <Button onClick={toggleColorMode}>
+          {colorMode === "light" ? (
+            <MdDarkMode></MdDarkMode>
+          ) : (
+            <MdLightMode></MdLightMode>
+          )}
+        </Button>
+      </Tooltip>
       <AddTask onAddTask={onAddTask}></AddTask>
 
       {taskLists.some((t) => !t.completed) && (

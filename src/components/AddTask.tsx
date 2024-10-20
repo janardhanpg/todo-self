@@ -8,8 +8,9 @@ import {
   Button,
   Input,
   Container,
+  Tooltip,
 } from "@chakra-ui/react";
-
+import { MdSave } from "react-icons/md";
 const exTasks = [
   "Do my laundry",
   "Cancel milk delivery ",
@@ -73,15 +74,17 @@ const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
             value={taskName}
           />
           <FormHelperText>e.g {exTasks[randomIndex]}</FormHelperText>
-
-          <Button
-            colorScheme="blue"
-            type="submit"
-            marginTop={3}
-            onClick={handleSubmit}
-          >
-            Add +
-          </Button>
+          <Tooltip label="Add Task">
+            <Button
+              rightIcon={<MdSave />}
+              colorScheme="blue"
+              type="submit"
+              marginTop={3}
+              onClick={handleSubmit}
+            >
+              Add
+            </Button>
+          </Tooltip>
         </Container>
       </FormControl>
     </div>

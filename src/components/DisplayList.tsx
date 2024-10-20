@@ -1,8 +1,16 @@
 import React from "react";
-import { List, ListItem, Button, Wrap, Flex,Container } from "@chakra-ui/react";
-
+import {
+  List,
+  ListItem,
+  Button,
+  Wrap,
+  Flex,
+  Container,
+  Tooltip,
+} from "@chakra-ui/react";
+import { MdDelete, MdCheckCircle, MdPendingActions } from "react-icons/md";
 interface Task {
-    id:number;
+  id: number;
   taskName: string;
   completed: boolean;
 }
@@ -24,25 +32,39 @@ const DisplayList: React.FC<DisplayListProps> = ({
   );
 
   return (
-    <Container maxW='container.sm'>
-    <List spacing={3}>
-      {filteredTasks.map((task) => (
+    <Container maxW="container.sm">
+      <List spacing={3}>
+        {filteredTasks.map((task) => (
           <ListItem key={task.id}>
-          <Flex justifyContent="space-between" alignItems="center">
-            <span>{task.taskName}</span>
-            <Wrap spacing={4}>
-              <Button onClick={() => handleComplete(task.id)}>
-                {task.completed ? "Not Completed" : "Completed"}
-              </Button>
-              <Button colorScheme="red" onClick={() => handleDelete(task.id)}>
-                Delete
-              </Button>
-            </Wrap>
-          </Flex>
-        </ListItem>
-      ))}
-    </List>
-      </Container>
+            <Flex justifyContent="space-between" alignItems="center">
+              <span>{task.taskName}</span>
+              <Wrap spacing={4}>
+                <Tooltip
+                  label={task.completed ? "Mark Inomplete" : "Mark Complete"}
+                  aria-label="Toggle Task Completion"
+                >
+                  <Button
+                    leftIcon={
+                      task.completed ? <MdPendingActions /> : <MdCheckCircle />
+                    }
+                    onClick={() => handleComplete(task.id)}
+                  >
+                    {/* {task.completed ? "Not Completed" : "Completed"} */}
+                  </Button>
+                </Tooltip>
+                <Tooltip label="Delete Task" aria-label="Delete Task">
+                  <Button
+                    leftIcon={<MdDelete />}
+                    colorScheme="red"
+                    onClick={() => handleDelete(task.id)}
+                  ></Button>
+                </Tooltip>
+              </Wrap>
+            </Flex>
+          </ListItem>
+        ))}
+      </List>
+    </Container>
   );
 };
 
