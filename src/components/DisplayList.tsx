@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ListItem, Button, Wrap, Flex } from "@chakra-ui/react";
+import { List, ListItem, Button, Wrap, Flex,Container } from "@chakra-ui/react";
 
 interface Task {
     id:number;
@@ -24,9 +24,10 @@ const DisplayList: React.FC<DisplayListProps> = ({
   );
 
   return (
+    <Container maxW='container.sm'>
     <List spacing={3}>
       {filteredTasks.map((task) => (
-        <ListItem key={task.id}>
+          <ListItem key={task.id}>
           <Flex justifyContent="space-between" alignItems="center">
             <span>{task.taskName}</span>
             <Wrap spacing={4}>
@@ -41,6 +42,7 @@ const DisplayList: React.FC<DisplayListProps> = ({
         </ListItem>
       ))}
     </List>
+      </Container>
   );
 };
 

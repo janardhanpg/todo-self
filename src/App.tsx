@@ -7,7 +7,7 @@ import {
   useColorMode,
   Button,
   Divider,
-  Heading,
+  Heading,Container
 } from "@chakra-ui/react";
 
 interface TaskList {
@@ -61,8 +61,8 @@ function App() {
   };
 
   return (
-    <>
-      <Button onClick={toggleColorMode}>
+    <Container maxW='container.sm'>
+      <Button onClick={toggleColorMode} right={1} position={'relative'}>
         Toggle {colorMode === "light" ? "Dark" : "Light"} Mode
       </Button>
       <AddTask onAddTask={onAddTask}></AddTask>
@@ -110,7 +110,7 @@ function App() {
         handleDelete={handleDelete}
         isEnabled={true}
       ></DisplayList>
-    </>
+    </Container>
   );
 }
 
