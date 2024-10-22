@@ -39,7 +39,11 @@ const DisplayList: React.FC<DisplayListProps> = ({
         {filteredTasks.map((task) => (
           <ListItem key={task.id}>
             <Flex justifyContent="space-between" alignItems="center">
-              <span>{task.taskName}</span>
+              <span style={{
+                width: "70%",
+                whiteSpace:"nowrap",
+                overflow: "hidden",
+                textOverflow:"ellipsis"              }}>{task.taskName}</span>
               <Wrap spacing={4}>
                 <Tooltip
                   label={task.completed ? "Mark Inomplete" : "Mark Complete"}
