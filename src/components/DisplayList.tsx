@@ -36,10 +36,10 @@ const DisplayList: React.FC<DisplayListProps> = ({
   return (
     <Container maxW="container.sm">
       <List spacing={3}>
-        {filteredTasks.map((task) => (
+        {filteredTasks.map((task,i) => (
           <ListItem key={task.id}>
             <Flex justifyContent="space-between" alignItems="center">
-              <span style={{
+              {i+1}<span style={{
                 width: "70%",
                 whiteSpace:"nowrap",
                 overflow: "hidden",
